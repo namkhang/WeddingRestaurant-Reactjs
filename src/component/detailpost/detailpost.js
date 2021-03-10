@@ -1,4 +1,6 @@
 import React , {useState , useEffect} from 'react';
+import {useParams} from 'react-router-dom'
+import Cookie from 'js-cookie'
 
 
 import '../Detailpost.css'
@@ -8,19 +10,28 @@ import Footer from '../footer/footer'
 
 function Detailpost(props) {
     const [data , setData] = useState({})
-
+    const [division , setDivision] = useState('A')
+ /*    console.log(useParams()); */
+    const {id} = useParams(); // trả về object chức các url params
     useEffect(()=>{
-        console.log( props.match.params.id);
                 fetch('http://localhost:3216/chitiet' , {method : 'POST' , headers : {
                         'Content-Type' : 'application/json'
                 },
-                body : JSON.stringify({id : props.match.params.id})
+                body : JSON.stringify({id : id})
             })
             .then(res=>res.json())
             .then(data => setData(data))
-    },[props.match.params.id])
+    },[id])
 
-    return (
+    function DivisionA(){
+          setDivision('A')
+    }
+    function DivisionB(){
+      setDivision('B')
+    }
+
+    if(Cookie.get('iduser')){
+      return (
         <div>
             <Menu  />
         <div className="chitiet">
@@ -67,13 +78,13 @@ function Detailpost(props) {
                   Chọn khu vực
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <button id="divisionA" className="dropdown-item" href="#">A</button>
-                  <button id="divisionB" className="dropdown-item" href="#">B</button>
+                  <button id="divisionA" className="dropdown-item" onClick={DivisionA} >A</button>
+                  <button id="divisionB" className="dropdown-item" onClick={DivisionB} >B</button>
                 </div>
               </div>
               <br />
               <span className="text-left" style={{fontSize: '20px', fontWeight: 700}}>Khoảng Giá :</span>  
-              <span id="price" style={{fontSize: '20px'}}>{data.PriceMin} (VND/suất) - {data.PriceMax} (VND/suất)</span>
+              <span id="price" style={{fontSize: '20px'}}>{division === 'A' ? data.PriceMin : data.PriceMinB} (VND/suất) - {division === 'A' ? data.PriceMax : data.PriceMaxB} (VND/suất)</span>
               <br />
               <br />
               <span className="text-left" style={{fontSize: '20px', fontWeight: 700}}>Thời gian trống :</span>
@@ -85,7 +96,7 @@ function Detailpost(props) {
               <br />
               <br />
               <span className="text-left" style={{fontSize: '20px', fontWeight: 700}}>Sức chứa :</span>
-              <span id="capacity" style={{fontSize: '20px'}}>{data.Capacity} khách</span>
+              <span id="capacity" style={{fontSize: '20px'}}>{division === 'A' ? data.Capacity : data.CapacityB} khách</span>
             </div>
             <div className="col-12 text-center">
               <div className="stars" style={{width: '420px'}}>
@@ -138,6 +149,12 @@ function Detailpost(props) {
       </div>
   
     );
+    }
+    else{
+      window.location.href ='/login'
+    }
+
+  
 }
 
 export default Detailpost;

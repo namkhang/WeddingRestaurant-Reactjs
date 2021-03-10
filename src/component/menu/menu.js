@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import Context from '../../context/context'
+import Cookie from 'js-cookie'
 
 export default function Menu(props){
   const Consumer = useContext(Context)
@@ -16,7 +17,10 @@ export default function Menu(props){
   function closeMemory(){
     document.getElementById('myModal').style.display = 'none';
   }
-
+  function Logout(){
+    Cookie.remove('iduser')
+    window.location.reload();
+  }
 
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -74,9 +78,8 @@ export default function Menu(props){
                     </a>
                   </li>
                   <li>
-                    <a className="name-li" id="dangxuat" href="/logout">
-                      Đăng xuất
-                    </a>
+                   <button className="name-li" onClick = {Logout}> Đăng xuất</button>
+                
                   </li>
                 </ul>
               </li>
