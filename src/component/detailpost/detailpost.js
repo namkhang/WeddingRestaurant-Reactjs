@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import Cookie from 'js-cookie'
 
 
+
 import '../Detailpost.css'
 import Menu from '../menu/menu'
 import Footer from '../footer/footer'

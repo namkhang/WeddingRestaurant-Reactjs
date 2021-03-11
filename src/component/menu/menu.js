@@ -19,6 +19,7 @@ export default function Menu(props){
   }
   function Logout(){
     Cookie.remove('iduser')
+    localStorage.removeItem('memory');
     window.location.reload();
   }
 
@@ -60,7 +61,7 @@ export default function Menu(props){
               </div>
               <li className="lneWsb"> 
                 <i className="fa fa-user-circle" aria-hidden="true" />
-                <span className="cbYxcp">Nguyen Dang Nam Khang</span>
+                <span className="cbYxcp">{Cookie.get('nameuser')}</span>
                 <ul className="sub-menu">
                   <li>
                     <a className="name-li" href="/information">

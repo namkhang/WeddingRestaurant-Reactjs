@@ -42,7 +42,7 @@ export default function Home(props){
       
         },[page])
 
-        function search(text){
+        function search(text){  // truyền hàm này vào props để component menu có thể sử dụng (hoặc có thể dùng Context)
           fetch('http://localhost:3216/searchforreactjs' , {method : 'POST' , headers : {
             'Content-Type' : 'application/json'
          },
@@ -172,7 +172,6 @@ export default function Home(props){
                     </li>
                   </ul>
                 </div>
-        
               <Footer />
                 </div>
             )

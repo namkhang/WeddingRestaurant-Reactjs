@@ -18,6 +18,7 @@ function Login() {
             }
             else{
                     Cookie.set('iduser' , data._id , {expires : 1/24});
+                    Cookie.set('nameuser' , data.fullname , {expires : 1/24});
                    window.location.href = '/';
             }
         })
