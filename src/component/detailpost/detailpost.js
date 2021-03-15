@@ -31,6 +31,11 @@ function Detailpost(props) {
       setDivision('B')
     }
 
+    function CreateOrder(){
+
+      window.location.href = `http://localhost:3000/createorder?idpost=${data._id}&divison=${division}`
+    }
+
     if(Cookie.get('iduser')){
       return (
         <div>
@@ -135,11 +140,10 @@ function Detailpost(props) {
             </div>
         
  
-            <a href="/">
+       
               <div className style={{marginTop: '30px', marginLeft: '110px'}}>
-                <button className="datcho" type="submit"  style={{marginLeft: '550px'}}>Đặt chỗ</button>
+                <button onClick={CreateOrder} className="datcho" type="submit"  style={{marginLeft: '550px'}}>Đặt chỗ</button>
               </div>
-            </a>
           </div>
           <br />
           <br />
