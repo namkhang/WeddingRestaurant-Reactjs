@@ -12,6 +12,7 @@ import Footer from '../footer/footer'
 function Detailpost(props) {
     const [data , setData] = useState({})
     const [division , setDivision] = useState('A')
+    const [rate , setRate] = useState('');
  /*    console.log(useParams()); */
     const {id} = useParams(); // trả về object chức các url params
     useEffect(()=>{
@@ -24,6 +25,15 @@ function Detailpost(props) {
             .then(data => setData(data))
     },[id])
 
+    useEffect(()=>{
+          let rateStar = document.getElementsByClassName('star');
+          for(let i = 0 ; i< rateStar.length ; i++){
+            rateStar[i].onclick = ()=>{
+              setRate(rateStar[i].value)
+            }
+          }
+    },[])
+
     function DivisionA(){
           setDivision('A')
     }
@@ -34,6 +44,23 @@ function Detailpost(props) {
     function CreateOrder(){
 
       window.location.href = `http://localhost:3000/createorder?idpost=${data._id}&divison=${division}`
+    }
+
+    function Rate(){
+      fetch('http://localhost:3216/rateforreact' , {method : 'POST' , headers : {
+          'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({id : id , rate : rate })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.message === 'Success'){
+        window.location.reload();
+      }
+      else{
+        window.location.reload();
+      }
+    })
     }
 
     if(Cookie.get('iduser')){
@@ -124,17 +151,17 @@ function Detailpost(props) {
                   <span className="ranting" itemProp="bestRating" style={{color: 'red', fontWeight: 'bold'}}>{data.rate1}</span> 
                 </div>
                   <div className="saoStart" style={{width: '420px', marginLeft: '-80px', marginTop: '10px'}}>
-                    <input className="star star-5" id="star-5" type="radio" name="star" defaultValue={5} />
+                    <input className="star star-5" id="star-5" type="radio" name="rate" value={5} />
                     <label className="star star-5" htmlFor="star-5" />
-                    <input className="star star-4" id="star-4" type="radio" name="star" defaultValue={4} />
+                    <input className="star star-4" id="star-4" type="radio" name="rate" value={4} />
                     <label className="star star-4" htmlFor="star-4" />
-                    <input className="star star-3" id="star-3" type="radio" name="star" defaultValue={3} />
+                    <input className="star star-3" id="star-3" type="radio" name="rate" value={3} />
                     <label className="star star-3" htmlFor="star-3" />
-                    <input className="star star-2" id="star-2" type="radio" name="star" defaultValue={2} />
+                    <input className="star star-2" id="star-2" type="radio" name="rate" value={2} />
                     <label className="star star-2" htmlFor="star-2" />
-                    <input className="star star-1" id="star-1" type="radio" name="star" defaultValue={1} />
+                    <input className="star star-1" id="star-1" type="radio" name="rate" value={1} />
                     <label className="star star-1" htmlFor="star-1" />
-                    <button type="submit"  style={{width: '175px', borderRadius: '15px', fontSize: '20px', fontWeight: 700, backgroundColor: '#2E5366', color: 'darksalmon', marginLeft: '200px'}}>Đánh giá</button>   
+                    <button type="submit" onClick={Rate}  style={{width: '175px', borderRadius: '15px', fontSize: '20px', fontWeight: 700, backgroundColor: '#2E5366', color: 'darksalmon', marginLeft: '200px'}}>Đánh giá</button>   
                   </div>    
               </div>
             </div>
