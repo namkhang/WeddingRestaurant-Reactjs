@@ -1,5 +1,5 @@
 import React , { useState , useEffect ,useContext} from 'react'
-import Cookie from 'js-cookie'
+/* import Cookie from 'js-cookie' */
 import Context from '../../context/context'
 import {useLocation} from 'react-router-dom'
 
@@ -20,15 +20,24 @@ export default function Home(props){
             fetch('http://localhost:3216/pagination' , {method : 'POST' , headers : {
               'Content-Type' : 'application/json'
          },
+         credentials : 'include',
         body : JSON.stringify({page : 1})
       })
            .then(res=>res.json())
-            .then(data => setPost(data))
+            .then(data => {
+              if(data.message){
+                window.location.href = '/login'
+              }
+              else{
+                setPost(data)
+              }
+            })
           }
           else{
             fetch('http://localhost:3216/pagination' , {method : 'POST' , headers : {
               'Content-Type' : 'application/json'
          },
+         credentials : 'include', // gửi kèm thèm cookie để sử dụng session trên server
            body : JSON.stringify({page :page})
       })
            .then(res=>res.json())
@@ -60,7 +69,7 @@ export default function Home(props){
 
         }
 
-            if(Cookie.get('iduser')){
+       
               return (
                 <div>
                     <Menu  search={search} />
@@ -175,9 +184,4 @@ export default function Home(props){
               <Footer />
                 </div>
             )
-            } 
-            else{
-              window.location.href = '/login'
-            }
-
 }

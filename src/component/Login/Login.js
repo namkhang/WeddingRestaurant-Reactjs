@@ -9,6 +9,7 @@ function Login() {
             fetch('http://localhost:3216/loginforreact' , {method : 'POST' , headers :{
                     'Content-Type' : 'application/json'
             },
+            credentials : 'include', // gui kem cookie len server de su dung duoc session
             body : JSON.stringify({username : document.getElementById('username').value , password : document.getElementById('password').value})
         })
         .then(res => res.json())

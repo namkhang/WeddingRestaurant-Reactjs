@@ -19,8 +19,16 @@ export default function Menu(props){
   }
   function Logout(){
     Cookie.remove('iduser')
+    Cookie.remove('nameuser')
     localStorage.removeItem('memory');
-    window.location.reload();
+
+    fetch('http://localhost:3216/logoutreact' , {method:'POST' , credentials : 'include'})
+    .then(res=>res.json())
+    .then(data =>{
+  if(data.message ==='Success'){
+        window.location.reload()
+      }
+    })
   }
 
     return(
