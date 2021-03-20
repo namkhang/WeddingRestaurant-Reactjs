@@ -1,31 +1,40 @@
 import React , {useState , useEffect} from 'react';
 import {useParams} from 'react-router-dom'
-import Cookie from 'js-cookie'
+import Axios from 'axios'
+/* import Cookie from 'js-cookie' */
 
 
 
 import '../Detailpost.css'
 import Menu from '../menu/menu'
 import Footer from '../footer/footer'
-
+Axios.defaults.withCredentials = true  // cho phép gửi kèm cookie vì khác port 
 
 function Detailpost(props) {
     const [data , setData] = useState({})
     const [division , setDivision] = useState('A')
     const [rate , setRate] = useState('');
+    const [login ,setLogin] = useState(true);
  /*    console.log(useParams()); */
     const {id} = useParams(); // trả về object chức các url params
-    useEffect(()=>{
-                fetch('http://localhost:3216/chitiet' , {method : 'POST' , headers : {
+    useEffect( ()=>{
+           async function fetchData(){
+            let respone = await Axios.post('http://localhost:3216/chitiet' , {id : id} /* , {headers :  {'Content-Type' : 'application/json'}} */);
+              setData(respone.data)
+           }
+              
+               /*  fetch('http://localhost:3216/chitiet' , {method : 'POST' , headers : {
                         'Content-Type' : 'application/json'
                 },
                 body : JSON.stringify({id : id})
             })
             .then(res=>res.json())
-            .then(data => setData(data))
+            .then(data => setData(data)) */
+            fetchData()
     },[id])
 
     useEffect(()=>{
+  
           let rateStar = document.getElementsByClassName('star');
           for(let i = 0 ; i< rateStar.length ; i++){
             rateStar[i].onclick = ()=>{
@@ -33,6 +42,21 @@ function Detailpost(props) {
             }
           }
     },[])
+
+    useEffect(()=>{
+       async function fetchData(){
+          let respone = await Axios.post('http://localhost:3216/checkloginforreact')
+          setLogin(respone.data.login)
+        }
+ 
+        fetchData()
+
+         /*  fetch('http://localhost:3216/checkloginforreact' , {method : 'POST' , credentials : 'include' })
+          .then(res=>res.json())
+          .then(data => setLogin(data.login)
+       
+) */
+},[])
 
     function DivisionA(){
           setDivision('A')
@@ -63,7 +87,7 @@ function Detailpost(props) {
     })
     }
 
-    if(Cookie.get('iduser')){
+      if(login === true){
       return (
         <div>
             <Menu  />
@@ -181,10 +205,10 @@ function Detailpost(props) {
       </div>
   
     );
-    }
-    else{
-      window.location.href ='/login'
-    }
+      }
+      else{
+        window.location.href = '/login';
+      }
 
   
 }

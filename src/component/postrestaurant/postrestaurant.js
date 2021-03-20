@@ -1,13 +1,17 @@
 import React , { useState , useEffect ,useContext} from 'react'
 /* import Cookie from 'js-cookie' */
 import Context from '../../context/context'
+import Axios from 'axios'
 import {useLocation} from 'react-router-dom'
 
 import Menu from '../menu/menu'
 import Footer from '../footer/footer'
 import '../Home.css'
+
+Axios.defaults.withCredentials = true;
 export default function Home(props){
         const [post, setPost] = useState([])
+        const [login,setLogin] = useState(true)
        let  query =  new URLSearchParams(useLocation().search);
        let page = query.get('page')
         const Consumer = useContext(Context)
@@ -15,8 +19,41 @@ export default function Home(props){
         let backPage =  parseInt(page) -1 || 1;
 
         useEffect(()=>{
-     
-          if(!page){
+              async function fetchData(){
+                    let respone = await Axios.post('http://localhost:3216/checkloginforreact');
+                    setLogin(respone.data.login)
+              }
+
+              fetchData()
+      /*     fetch('http://localhost:3216/checkloginforreact' , {method : 'POST' , credentials : 'include' })
+          .then(res=>res.json())
+          .then(data => setLogin(data.login)
+) */
+},[])
+
+        useEffect(()=>{
+            async function fetchData(){
+                  if(!page){
+                      let respone = await Axios.post('http://localhost:3216/pagination' , {page : 1})
+                      if(respone.data.message){
+                        window.location.href = '/login'
+                      }
+                      else{
+                        setPost(respone.data)
+                      }
+                  }
+                  else{
+                    let respone = await Axios.post('http://localhost:3216/pagination' , {page : page})
+                    if(respone.data.message){
+                      window.location.href = '/login'
+                    }
+                    else{
+                      setPost(respone.data)
+                    }
+                  }
+            }
+            fetchData()
+          /* if(!page){
             fetch('http://localhost:3216/pagination' , {method : 'POST' , headers : {
               'Content-Type' : 'application/json'
          },
@@ -41,24 +78,36 @@ export default function Home(props){
            body : JSON.stringify({page :page})
       })
            .then(res=>res.json())
-           .then(data => setPost(data))
-          }
+           .then(data => {
+                if(data.message){
+              window.location.href = '/login'
+            }
+            else{
+              setPost(data)
+            }       
+          })
             //////////////////
              
-          return ()=>{
+       
+        } */
+        return ()=>{
 
-          }
+        }
       
         },[page])
 
-        function search(text){  // truyền hàm này vào props để component menu có thể sử dụng (hoặc có thể dùng Context)
-          fetch('http://localhost:3216/searchforreactjs' , {method : 'POST' , headers : {
+       async function search(text){  // truyền hàm này vào props để component menu có thể sử dụng (hoặc có thể dùng Context)
+
+        let respone = await Axios.post('http://localhost:3216/searchforreactjs' , {name : text});
+             setPost(respone.data)
+
+        /*   fetch('http://localhost:3216/searchforreactjs' , {method : 'POST' , headers : {
             'Content-Type' : 'application/json'
          },
              body : JSON.stringify({name : text})
             })
             .then(res => res.json())
-            .then(data => setPost(data) )
+            .then(data => setPost(data) ) */
         }
 
         function addMemory(item){
@@ -69,7 +118,8 @@ export default function Home(props){
 
         }
 
-       
+            if(login === true){
+     
               return (
                 <div>
                     <Menu  search={search} />
@@ -184,4 +234,9 @@ export default function Home(props){
               <Footer />
                 </div>
             )
+              }
+              else{
+                  window.location.href = '/login'
+              }
+                        
 }

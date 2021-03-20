@@ -8,6 +8,15 @@ function Myaccount(props) {
     const [dataAccount , setDataAccount] = useState({});
     const [image , setImage] = useState('');
     const [gender , setGender] = useState('');
+    const [login,setLogin] = useState(true)
+
+    useEffect(()=>{
+      fetch('http://localhost:3216/checkloginforreact' , {method : 'POST' , credentials : 'include' })
+      .then(res=>res.json())
+      .then(data => setLogin(data.login)
+)
+},[])
+
     useEffect(()=>{
             fetch('http://localhost:3216/informationreact' , {method : 'POST' , headers : {
                     'Content-Type' : 'application/json'
@@ -61,6 +70,7 @@ function Myaccount(props) {
         })
     }
 
+    if(login === true){
     return (
         <div>
             <Menu />
@@ -243,6 +253,10 @@ function Myaccount(props) {
       <Footer />
         </div>
     );
+    }
+    else{
+      window.location.href = '/login'
+    }
 }
 
 export default Myaccount;

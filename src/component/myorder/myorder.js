@@ -13,6 +13,15 @@ import Footer from '../footer/footer'
 
 export default function Myorder (){
         const [dataorder , setDataorder] = useState([])
+        const [login , setLogin] = useState(true)
+
+        useEffect(()=>{
+          fetch('http://localhost:3216/checkloginforreact' , {method : 'POST' , credentials : 'include' })
+          .then(res=>res.json())
+          .then(data => setLogin(data.login)
+    )
+    },[])
+
     useEffect(()=>{
 
             fetch('http://localhost:3216/myorderforreact' , {method : 'POST' , headers :{
@@ -40,6 +49,7 @@ export default function Myorder (){
           
     }
 
+    if(login === true){
     return (
         <div>
         <Menu />
@@ -104,4 +114,8 @@ export default function Myorder (){
       <Footer />
       </div>
     )
+                    }
+          else{
+            window.location.href = '/login'
+          }
 }
