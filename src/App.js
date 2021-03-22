@@ -8,7 +8,7 @@ import Myorder from './component/myorder/myorder'
 import CreateOrder from './component/createorder/createorder'
 import Listchat from './component/listchat/listchat'
 import Myaccount from './component/myaccount/Myaccount'
-
+import Chat from './component/chat/Chat'
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path='/createorder' exact component={CreateOrder}></Route>
           <Route path='/listchat' exact component={Listchat}></Route>
           <Route path='/myaccount' exact component={Myaccount}></Route>
+          <Route path='/chat/:id' exact component={Chat}></Route>
           </Provide>
       </Switch>
     </div>

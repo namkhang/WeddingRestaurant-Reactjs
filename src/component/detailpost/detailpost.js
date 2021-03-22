@@ -87,6 +87,7 @@ function Detailpost(props) {
     })
     }
 
+
       if(login === true){
       return (
         <div>

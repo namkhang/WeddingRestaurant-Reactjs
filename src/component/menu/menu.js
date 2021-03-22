@@ -72,7 +72,7 @@ export default function Menu(props){
                 <span className="cbYxcp">{Cookie.get('nameuser')}</span>
                 <ul className="sub-menu">
                   <li>
-                    <a className="name-li" href="/information">
+                    <a className="name-li" href="/myaccount">
                       Tài khoản của tôi
                     </a>
                   </li>

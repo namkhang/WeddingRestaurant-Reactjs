@@ -27,7 +27,7 @@ export default class Provide extends Component{
             addToMemo(item){
                     let data = [...this.state.dataMemo];
                     data.push(item)
-                    localStorage.memory =JSON.stringify(data) ; // bien duoc luu vao localStore va sessionStore phai duoi dang
+                    localStorage.memory =JSON.stringify(data) ; // bien duoc luu vao localStore va sessionStore phai duoi dang json
                     this.setState({dataMemo : JSON.parse(localStorage.memory)})
             }
 

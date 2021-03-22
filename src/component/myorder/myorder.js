@@ -84,7 +84,7 @@ export default function Myorder (){
                                  {i.CustomerPhone}
                                  </td>
                                  <td>
-                                   <a href={`/chitiet/${i.Idrestaurant}`}>{i.NameRestaurant}</a>
+                                   <a href={`/chitiet/${i._id}`}>{i.NameRestaurant}</a>
                                  </td>
                                  <td>
                                  {i.RestaurantAddress}
