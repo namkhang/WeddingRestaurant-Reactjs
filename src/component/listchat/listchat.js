@@ -43,7 +43,7 @@ function Listchat(props) {
               </div>
               <br />
               {dataListchat.map(item=>
-                      <a href="/chatonline">
+                      <a href={`/chat/${item.IdRestaurant}`}>
                       <div className="friend-drawer friend-onhover">
                         <img className="profile-image" src={item.imageRes} alt="none" />
                         <div className="text">

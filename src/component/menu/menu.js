@@ -7,7 +7,7 @@ export default function Menu(props){
 
   function Search(){
        /*  Consumer.search(document.getElementById('searchReact').value) */
-       props.search(document.getElementById('searchReact').value)
+      return props.search(document.getElementById('searchReact').value)
   }
 
   function Memory(){

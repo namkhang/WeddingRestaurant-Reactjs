@@ -4,11 +4,13 @@ import Provide from './context/provide'
 import Home from './component/postrestaurant/postrestaurant'
 import Detailpost from './component/detailpost/detailpost'
 import Login from './component/Login/Login'
+import LoginForRes from './component/Login/Loginforres'
 import Myorder from './component/myorder/myorder'
 import CreateOrder from './component/createorder/createorder'
 import Listchat from './component/listchat/listchat'
 import Myaccount from './component/myaccount/Myaccount'
 import Chat from './component/chat/Chat'
+import HomeforRes from './component/postrestaurant/postresforres'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path='/listchat' exact component={Listchat}></Route>
           <Route path='/myaccount' exact component={Myaccount}></Route>
           <Route path='/chat/:id' exact component={Chat}></Route>
+          <Route path='/restaurant/homeforres' exact component={HomeforRes}></Route>
+          <Route path='/restaurant/loginforres' exact component={LoginForRes}></Route>
           </Provide>
       </Switch>
     </div>

@@ -5,8 +5,7 @@ export default class Provide extends Component{
                 super(props)
                 this.state = {
             /*         data : [], */
-                    dataMemo :  localStorage.memory ?  JSON.parse( localStorage.memory) : [],
-                    data : 123
+                    dataMemo :  localStorage.memory ?  JSON.parse( localStorage.memory) : []
                 }
                
                 
@@ -50,8 +49,7 @@ export default class Provide extends Component{
             render(){
                 return(
                     <Context.Provider value={{
-                         /*    data : this.state.data,
-                            search :this.search.bind(this), */
+                            /*search :this.search.bind(this), */
                             dataMemo : this.state.dataMemo,
                             addToMemo : this.addToMemo.bind(this),
                             removeMemo : this.removeMemo.bind(this)

@@ -197,6 +197,7 @@ function Detailpost(props) {
                 <button onClick={CreateOrder} className="datcho" type="submit"  style={{marginLeft: '550px'}}>Đặt chỗ</button>
               </div>
           </div>
+
           <br />
           <br />
           <br />

@@ -46,8 +46,8 @@ function Login() {
             </div>
           </div>
           <div className="link">
-            <a href="/restaurant"><img src="/W.WR.png" alt='none' style={{width: '50px', height: '50px'}} /></a>
-            <a href="/auth/facebook"><img src="/fb-icon.png" alt='none' /></a>
+            <a href="/restaurant/loginforres"><img src="/W.WR.png" alt='none' style={{width: '50px', height: '50px'}} /></a>
+            <a href="http://localhost:3216/auth/facebook"><img src="/fb-icon.png" alt='none' /></a>
             <a href="/auth/gmail"><img src="/gmail-icon.png" alt='none' /></a>      
           </div>
         </div>

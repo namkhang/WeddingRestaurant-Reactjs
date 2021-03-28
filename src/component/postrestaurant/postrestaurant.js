@@ -18,8 +18,11 @@ export default function Home(props){
         let nextPage = parseInt(page) + 1 || 2;
         let backPage =  parseInt(page) -1 || 1;
 
+        
+
         useEffect(()=>{
               async function fetchData(){
+                    
                     let respone = await Axios.post('http://localhost:3216/checkloginforreact');
                     setLogin(respone.data.login)
               }
@@ -111,7 +114,7 @@ export default function Home(props){
         }
 
         function addMemory(item){
-          return ()=>{
+          return  ()=>{
             Consumer.addToMemo(item); // high order funtion dùng để ngăn chặn việc truyền hàm chạy ngay lập tức 
           }
 
@@ -185,13 +188,94 @@ export default function Home(props){
                                     <p  key={index + 3} className="text-address notranslate">{item.Address}</p>
                                     <p  key={index + 4} className="text-money notranslate">{item.hotline}</p>
                                   </div>
-                                  <div className="home-product-item__rating">
-                                    <i className="home-product-item__star-gold fas fa-star" />
-                                    <i className="home-product-item__star-gold fas fa-star" />
-                                    <i className="home-product-item__star-gold fas fa-star" />
-                                    <i className="home-product-item__star-gold fas fa-star-half-alt" />
-                                    <i className="__star-gold fas fa-star-half-alt" />
-                                  </div>
+                                {item.avgrate > 4.7 && item.avgrate <= 5.0 ? 
+                                <div class="home-product-item__rating">
+                                <i class="home-product-item__star-gold fas fa-star"></i>
+                                <i class="home-product-item__star-gold fas fa-star"></i>
+                                <i class="home-product-item__star-gold fas fa-star"></i>
+                                <i class="home-product-item__star-gold fas fa-star"></i>
+                                <i class="home-product-item__star-gold fas fa-star"></i>
+                              </div> : 
+                                  item.avgrate > 4.35 && item.avgrate <= 4.65 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate > 3.7 && item.avgrate <= 4.35 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate > 3.35 && item.avgrate <= 3.7 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate >  2.7 && item.avgrate <= 3.35 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                   item.avgrate > 2.35 && item.avgrate <= 2.7 ? 
+                                   <div class="home-product-item__rating">
+                                   <i class="home-product-item__star-gold fas fa-star"></i>
+                                   <i class="home-product-item__star-gold fas fa-star"></i>
+                                   <i class="home-product-item__star-gold fas fa-star-half-alt"></i>
+                                   <i class="__star-gold fas fa-star-half-alt"></i>
+                                   <i class="__star-gold fas fa-star-half-alt"></i>
+                                 </div> : 
+                                  item.avgrate > 1.7 && item.avgrate <= 2.35 ?
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate > 1.35 && item.avgrate <= 1.7 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="home-product-item__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate > 0.7 && item.avgrate <= 1.35 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                  item.avgrate > 0.35 && item.avgrate <= 0.7 ? 
+                                  <div class="home-product-item__rating">
+                                  <i class="home-product-item__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                  <i class="__star-gold fas fa-star-half-alt"></i>
+                                </div> : 
+                                 <div class="home-product-item__rating">
+                                 <i class="__star-gold fas fa-star-half-alt"></i>
+                                 <i class="__star-gold fas fa-star-half-alt"></i>
+                                 <i class="__star-gold fas fa-star-half-alt"></i>
+                                 <i class="__star-gold fas fa-star-half-alt"></i>
+                                 <i class="__star-gold fas fa-star-half-alt"></i>
+                               </div>
+                                 }
                                   <div className="home-product-item__text">
                                     <span  key={index + 5}>{item.avgrate}/5 {item.totalRate} </span>
                                   </div>
