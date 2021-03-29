@@ -26,10 +26,14 @@ function Chat() {
 
         useEffect(()=>{
                   socket = io('http://localhost:5000')
+                  socket.emit('join-room',chat._id)
                   socket.on('server-sent-chat' , (data)=>{
+                    if(data.IdCustomer === Cookies.get('iduser') && data.IdRestaurant === id){
                       setChat(data)
+                    }
+                     
                   })
-        },[])
+        },[chat._id , id])
 
         function enterChat(event){
                 if(event.keyCode === 13){
@@ -90,7 +94,7 @@ function Chat() {
                       </div>
                     </div>
                   </div>
-                  <div className="chat-box-tray" style={{width: '740px', position: 'absolute', right: '190px', bottom: '-90px'}}>
+                  <div className="chat-box-tray" style={{width: '740px', position: 'absolute', right: '190px', bottom: '-140px'}}>
                     <i className="fa fa-meh-o" aria-hidden="true" />
                     <input type="text" placeholder="Type your message here..." onKeyUp={enterChat} />
                     <i className="fa fa-microphone" aria-hidden="true" /> 

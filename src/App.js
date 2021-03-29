@@ -11,6 +11,8 @@ import Listchat from './component/listchat/listchat'
 import Myaccount from './component/myaccount/Myaccount'
 import Chat from './component/chat/Chat'
 import HomeforRes from './component/postrestaurant/postresforres'
+import Listchatforres from './component/listchat/listchatforres'
+import Chatforres from './component/chat/Chatforres'
 
 function App() {
   return (
@@ -24,9 +26,11 @@ function App() {
           <Route path='/createorder' exact component={CreateOrder}></Route>
           <Route path='/listchat' exact component={Listchat}></Route>
           <Route path='/myaccount' exact component={Myaccount}></Route>
-          <Route path='/chat/:id' exact component={Chat}></Route>
+          <Route path='/chat/:id' exact component={Chat}></ Route>
           <Route path='/restaurant/homeforres' exact component={HomeforRes}></Route>
           <Route path='/restaurant/loginforres' exact component={LoginForRes}></Route>
+          <Route path='/restaurant/listchatforres' exact component={Listchatforres}></Route>
+          <Route path='/restaurant/chat/:id' exact component={Chatforres}></Route>
           </Provide>
       </Switch>
     </div>

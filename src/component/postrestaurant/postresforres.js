@@ -36,10 +36,19 @@ function Postresforres() {
         }
             fetchData()
     },[page])
+
+    function search(text){
+          async function fetchData(){
+                let respone = await Axios.post('http://localhost:3216/searchforreactjs' , {name : text});
+                 setPost(respone.data)
+           }
+           fetchData()
+    }
+
       if(login === true){
     return (
         <div>
-        <Menures />
+        <Menures search={search} />
     <div className="banner" style={{marginBottom : '20px'}}>
       <div id="carouselExampleIndicators" className="carousel slide" style={{width: '100%'}} data-ride="carousel">
         <ol className="carousel-indicators">
