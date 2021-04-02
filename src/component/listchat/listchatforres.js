@@ -12,6 +12,7 @@ function Listchatforres(props) {
             async function fetchData(){
                 let idres = Cookies.get('idres');
                 let respone = await Axios.get(`http://localhost:3216/restaurant/listchatforres/${idres}`);
+                console.log(respone.data);
                 setDataListChat(respone.data)
             }
             fetchData()
@@ -46,9 +47,9 @@ function Listchatforres(props) {
                     <img className="profile-image" src={item.imageCus} alt="none" />
                     <div className="text">
                       <h6>{item.CusName}</h6>
-                      <p className="text-muted">{item.Chat[item.Chat.length - 1].chatcontent}</p>
+                      <p className="text-muted">{item.Chat.length > 0 ? item.Chat[item.Chat.length - 1].chatcontent : ''}</p>
                     </div>
-                    <span className="time text-muted small">{item.Chat[item.Chat.length - 1].time}</span>
+                    <span className="time text-muted small">{item.Chat.length > 0  ? item.Chat[item.Chat.length - 1].time : ''}</span>
                   </div>
                 </a>
                 

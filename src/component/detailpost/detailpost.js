@@ -8,6 +8,7 @@ import Axios from 'axios'
 import '../Detailpost.css'
 import Menu from '../menu/menu'
 import Footer from '../footer/footer'
+import Cookies from 'js-cookie';
 Axios.defaults.withCredentials = true  // cho phép gửi kèm cookie vì khác port 
 
 function Detailpost(props) {
@@ -85,6 +86,11 @@ function Detailpost(props) {
         window.location.reload();
       }
     })
+    }
+
+   async function Chat(){
+        let respone = await Axios.post('http://localhost:3216/chatforreact' , {idcus : Cookies.get('iduser') , idres : data.Idrestaurant , cusName  : Cookies.get('nameuser')});
+        window.location.href = `/chat/${respone.data.IdRestaurant}`;
     }
 
 
@@ -195,6 +201,9 @@ function Detailpost(props) {
        
               <div className style={{marginTop: '30px', marginLeft: '110px'}}>
                 <button onClick={CreateOrder} className="datcho" type="submit"  style={{marginLeft: '550px'}}>Đặt chỗ</button>
+              </div>
+              <div className style={{marginTop: '30px', marginLeft: '110px'}}>
+                <button onClick={Chat} className="datcho" type="submit"  style={{marginLeft: '550px'}}>Nhắn tin</button>
               </div>
           </div>
 

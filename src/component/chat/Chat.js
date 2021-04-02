@@ -54,8 +54,8 @@ function Chat() {
                       <div className="settings-tray" style={{height: '80px'}}>
                         <div className="friend-drawer no-gutters friend-grey" style={{height: '80px'}}>
                           <div className="text">
-                            <h6 id="name" style={{color: 'black'}}>wqeqweqweqwe</h6>
-                            <h6 style={{color: 'black'}}>ID : <span id="userid">asdasdsad</span> </h6>
+                            <h6 id="name" style={{color: 'black'}}>{Cookies.get('nameuser')}</h6>
+                            <h6 style={{color: 'black'}}>ID : <span id="userid">{Cookies.get('iduser')}</span> </h6>
                             <p className="text-muted">Hãy cùng trò chuyện cùng mọi người</p>
                           </div>
                           <span className="setting-tray setting-right">

@@ -26,7 +26,7 @@ function Menuforres(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid"> 
-          <img alt='none' src="/W.WR.png" style={{width: '70px', height: '60px', marginRight: '5px'}} /><a className="navbar-brand"  href="/restaurant">Wedding Restaurant</a>
+          <img alt='none' src="/W.WR.png" style={{width: '70px', height: '60px', marginRight: '5px'}} /><a className="navbar-brand"  href="/restaurant/homeforres">Wedding Restaurant</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           </button>
           <form className="form-inline my-2 my-lg-0" action="/restaurant/search" method="GET">
@@ -38,7 +38,7 @@ function Menuforres(props) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="/restaurant">Trang chủ</a>
+                  <a className="nav-link" href="/restaurant/homeforres">Trang chủ</a>
                 </li>
                 <li className="nav-item active">
                   <a className="nav-link" href="/restaurant/news">Tin tức</a>

@@ -13,6 +13,8 @@ import Chat from './component/chat/Chat'
 import HomeforRes from './component/postrestaurant/postresforres'
 import Listchatforres from './component/listchat/listchatforres'
 import Chatforres from './component/chat/Chatforres'
+import MyOrderForRes from './component/myorder/myorderforres'
+import Post from './component/createpost/createpost'
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path='/restaurant/loginforres' exact component={LoginForRes}></Route>
           <Route path='/restaurant/listchatforres' exact component={Listchatforres}></Route>
           <Route path='/restaurant/chat/:id' exact component={Chatforres}></Route>
+          <Route path='/restaurant/myorder' exact component={MyOrderForRes}></Route>
+          <Route path='/restaurant/post' exact component={Post}></Route>
           </Provide>
       </Switch>
     </div>
