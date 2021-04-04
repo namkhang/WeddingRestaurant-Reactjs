@@ -15,6 +15,7 @@ import Listchatforres from './component/listchat/listchatforres'
 import Chatforres from './component/chat/Chatforres'
 import MyOrderForRes from './component/myorder/myorderforres'
 import Post from './component/createpost/createpost'
+import UpdatePost from './component/updatepost/updatepost'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/restaurant/chat/:id' exact component={Chatforres}></Route>
           <Route path='/restaurant/myorder' exact component={MyOrderForRes}></Route>
           <Route path='/restaurant/post' exact component={Post}></Route>
+          <Route path='/restaurant/updatepost' exact component={UpdatePost}></Route>
           </Provide>
       </Switch>
     </div>

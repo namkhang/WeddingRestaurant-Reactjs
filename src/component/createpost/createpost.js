@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import MenuforRes from '../menu/menuforres'
 import Footer from '../footer/footer'
@@ -7,6 +7,16 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 function Createpost(){
+      const[post,setPost] = useState({});
+   useEffect(()=>{
+     async function getData(){
+      let respone =await axios.get(`http://localhost:3216/restaurant/checkpost/${Cookies.get('idres')}`);
+      setPost(respone.data);
+     }
+      getData();
+      
+       
+   },[])
 
    async function Post(){
         let formData = new FormData();
@@ -36,6 +46,8 @@ function Createpost(){
 return (
     <div>
         <MenuforRes />
+        {post ?  <h6 style={{color : 'red' , marginLeft : '500px' , marginTop : '187px' , marginBottom : '200px'}}>Nhà hàng của bạn đã đăng bài rồi vui lòng
+        không đăng bài thêm nữa</h6> : 
         <div className="container">
         <div className="row">
           <div style={{marginLeft: '550px', color: 'red', fontSize: '18px', fontWeight: 500, listStyle: 'none', marginBottom: '16px'}}>
@@ -160,6 +172,7 @@ return (
           <input onClick={Post} className="datcho" type="submit" defaultValue="Đăng bài" />
         </div>
       </div>
+      }
         <Footer />
     </div>
 )
