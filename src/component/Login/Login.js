@@ -51,7 +51,7 @@ function Login() {
             <a href="/auth/gmail"><img src="/gmail-icon.png" alt='none' /></a>      
           </div>
         </div>
-        <div id="overlay-area" />
+        <div id="overlay-area" />z
       </div>
       
   

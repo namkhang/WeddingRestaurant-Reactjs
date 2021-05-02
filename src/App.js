@@ -1,6 +1,6 @@
 import {Switch , Route} from 'react-router-dom'
 
-import Provide from './context/provide'
+import {Provide} from './context/provide'
 import Home from './component/postrestaurant/postrestaurant'
 import Detailpost from './component/detailpost/detailpost'
 import Login from './component/Login/Login'
@@ -16,6 +16,7 @@ import Chatforres from './component/chat/Chatforres'
 import MyOrderForRes from './component/myorder/myorderforres'
 import Post from './component/createpost/createpost'
 import UpdatePost from './component/updatepost/updatepost'
+import Redux from './component/ReduxComponent/ReduxComponent'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path='/restaurant/myorder' exact component={MyOrderForRes}></Route>
           <Route path='/restaurant/post' exact component={Post}></Route>
           <Route path='/restaurant/updatepost' exact component={UpdatePost}></Route>
+          <Route path='/redux' exact component={Redux}></Route>
           </Provide>
       </Switch>
     </div>

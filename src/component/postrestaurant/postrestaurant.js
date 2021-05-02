@@ -1,6 +1,6 @@
 import React , { useState , useEffect ,useContext} from 'react'
 /* import Cookie from 'js-cookie' */
-import Context from '../../context/context'
+import {Context} from '../../context/provide'
 import Axios from 'axios'
 import {useLocation} from 'react-router-dom'
 
@@ -15,9 +15,14 @@ export default function Home(props){
        let  query =  new URLSearchParams(useLocation().search);
        let page = query.get('page')
         const Consumer = useContext(Context)
-        let nextPage = parseInt(page) + 1 || 2;
-        let backPage =  parseInt(page) -1 || 1;
-
+        let nextPage = page ? parseInt(page) + 1 : 2;
+        let backPage =  page ? parseInt(page) -1 : 1;
+        if(page > 3){
+          nextPage = 4
+        }
+        if(page < 2){
+          backPage = 1
+        }
         
 
         useEffect(()=>{

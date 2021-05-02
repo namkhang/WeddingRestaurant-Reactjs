@@ -93,6 +93,11 @@ function Detailpost(props) {
         window.location.href = `/chat/${respone.data.IdRestaurant}`;
     }
 
+    async function getApi(){
+      let response = await Axios.get('http://localhost:8000')
+      console.log(response);
+    }
+
 
       if(login === true){
       return (
@@ -204,6 +209,7 @@ function Detailpost(props) {
               </div>
               <div className style={{marginTop: '30px', marginLeft: '110px'}}>
                 <button onClick={Chat} className="datcho" type="submit"  style={{marginLeft: '550px'}}>Nhắn tin</button>
+                <button onClick={getApi} className="datcho" type="submit"  style={{marginLeft: '550px'}}>getapi</button>
               </div>
           </div>
 

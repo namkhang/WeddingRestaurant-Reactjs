@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import Context from '../../context/context'
+import {Context} from '../../context/provide'
 import Cookie from 'js-cookie'
 
 export default function Menu(props){

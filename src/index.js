@@ -8,13 +8,18 @@ import './fonts/fontawesome-free-5.12.1/css/all.min.css'
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store/redux';
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <BrowserRouter>
     <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
+  
   document.getElementById('root')
 );
 
